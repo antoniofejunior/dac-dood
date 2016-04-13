@@ -8,6 +8,7 @@ package ifpb.dac.dood.dao;
 
 import ifpb.dac.dood.pojos.Evento;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,6 +17,7 @@ import javax.persistence.TypedQuery;
  * 
  * @author Dijalma Silva <dijalmacz@gmail.com>
  */
+@Stateless
 public class EventoDao {
 
      @PersistenceContext(unitName = "Dac_Dood")

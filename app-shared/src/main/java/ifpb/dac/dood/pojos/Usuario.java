@@ -6,34 +6,46 @@
 package ifpb.dac.dood.pojos;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  *
  * @author Dijalma Silva <dijalmacz@gmail.com>
  */
 @Entity
+@Access(AccessType.FIELD)
 public class Usuario implements Serializable {
 
-    @EmbeddedId
+    @Transient
     private Token token;
+
+    @Id
+    private String email;
+    @Enumerated(EnumType.STRING)
+    private Perfil perfil;
     @Column(length = 40)
     private String nome;
     @Column(length = 40)
     private String sobrenome;
     @Column(length = 30)
     private String matricula;
-    @Column(length = 30)
+    @Transient
     private String senha;
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
@@ -54,12 +66,12 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(Token token, String nome, String sobrenome, String matricula, String senha, Sexo sexo, byte[] avatar, LocalDate dataNascimento, Status status) {
-        this(token, nome, sobrenome, matricula, senha, sexo, avatar, dataNascimento, status, new ArrayList<Usuario>(), new ArrayList<Dood>(), new ArrayList<Arquivo>());
+    public Usuario(String email, Perfil perfil, String nome, String sobrenome, String matricula, String senha, Sexo sexo, byte[] avatar, LocalDate dataNascimento, Status status) {
+        this(email, perfil, nome, sobrenome, matricula, senha, sexo, avatar, dataNascimento, status, new ArrayList<Usuario>(), new ArrayList<Dood>(), new ArrayList<Arquivo>());
     }
 
-    public Usuario(Token token, String nome, String sobrenome, String matricula, String senha, Sexo sexo, byte[] avatar, LocalDate dataNascimento, Status status, List<Usuario> seguindo, List<Dood> doods, List<Arquivo> arquivos) {
-        this.token = token;
+    public Usuario(String email, Perfil perfil, String nome, String sobrenome, String matricula, String senha, Sexo sexo, byte[] avatar, LocalDate dataNascimento, Status status, List<Usuario> seguindo, List<Dood> doods, List<Arquivo> arquivos) {
+        this.token = new Token();
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.matricula = matricula;
@@ -71,6 +83,8 @@ public class Usuario implements Serializable {
         this.seguindo = seguindo;
         this.doods = doods;
         this.arquivos = arquivos;
+        this.email = email;
+        this.perfil = perfil;
     }
 
     public void seguir(Usuario usuario) {
@@ -88,12 +102,12 @@ public class Usuario implements Serializable {
     public void deixarDeSeguir(Dood dood) {
         this.doods.remove(dood);
     }
-    
-    public void addArquivo(Arquivo arquivo){
+
+    public void addArquivo(Arquivo arquivo) {
         this.arquivos.add(arquivo);
     }
-    
-    public void remArquivo(Arquivo arquivo){
+
+    public void remArquivo(Arquivo arquivo) {
         this.arquivos.remove(arquivo);
     }
 
@@ -129,8 +143,12 @@ public class Usuario implements Serializable {
         this.matricula = matricula;
     }
 
-    public String getSenha() {
-        return senha;
+    @Access(AccessType.PROPERTY)
+    @Column(name = "senha")
+    public String getSenha() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+        byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+        return new String(messageDigest);
     }
 
     public void setSenha(String senha) {
@@ -191,6 +209,22 @@ public class Usuario implements Serializable {
 
     public void setArquivos(List<Arquivo> arquivos) {
         this.arquivos = arquivos;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
 }

@@ -5,6 +5,14 @@
  */
 package ifpb.dac.dood;
 
+import ifpb.dac.dood.interfaces.UsuarioService;
+import ifpb.dac.dood.pojos.Perfil;
+import ifpb.dac.dood.pojos.Sexo;
+import ifpb.dac.dood.pojos.Status;
+import ifpb.dac.dood.pojos.Usuario;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dijalma Silva <dijalmacz@gmail.com>
@@ -39,6 +47,11 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setText("DOOD");
 
         jButton1.setText("Logar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Email:");
 
@@ -91,6 +104,18 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        UsuarioService service = new ServiceLocator().lookup("java:global/DAC_Dood-core/UsuarioServiceImpl", UsuarioService.class);
+
+//        Usuario u = new Usuario("joe@gmail.com", Perfil.Administrador, "Joe", "Lins", "2011123010134", 
+//                "123123", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa);
+        Usuario find = service.buscar("dijalmacz@gmail.com");
+
+        JOptionPane.showMessageDialog(null, find.getNome());
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

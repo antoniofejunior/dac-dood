@@ -6,8 +6,11 @@
 
 package ifpb.dac.dood.services;
 
+import ifpb.dac.dood.dao.ConviteDao;
 import ifpb.dac.dood.interfaces.ConviteService;
 import ifpb.dac.dood.pojos.Convite;
+import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
@@ -17,11 +20,14 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @Remote(ConviteService.class)
-public class ConviteServiceImpl implements ConviteService{
+public class ConviteServiceImpl implements ConviteService, Serializable{
 
+    @EJB
+    private ConviteDao dao;
+    
     @Override
     public void enviar(Convite convite) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dao.salvar(convite);
     }
 
     @Override
