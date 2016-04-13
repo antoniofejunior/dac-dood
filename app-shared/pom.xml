@@ -13,5 +13,11 @@
     <version>y</version>
   
     <name>DAC_Dood-shared</name>
-     
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.3-M1</version>
+        </dependency>
+    </dependencies>
 </project>
