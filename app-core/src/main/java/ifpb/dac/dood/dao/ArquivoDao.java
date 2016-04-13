@@ -29,7 +29,7 @@ public class ArquivoDao {
     }
     
     public boolean remove(Arquivo arquivo){
-        em.remove(arquivo);
+        em.remove(em.merge(arquivo));
         return true;
     }
     

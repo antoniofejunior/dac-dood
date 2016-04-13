@@ -29,7 +29,7 @@ public class ConviteDao {
     }
     
     public boolean remove(Convite convite){
-        em.remove(convite);
+        em.remove(em.merge(convite));
         return true;
     }
     

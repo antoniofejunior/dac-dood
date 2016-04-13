@@ -29,7 +29,7 @@ public class DuvidaDao {
     }
     
     public boolean remove(Duvida duvida){
-        em.remove(duvida);
+        em.remove(em.merge(duvida));
         return true;
     }
     

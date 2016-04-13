@@ -21,4 +21,6 @@ public interface UsuarioService {
     Usuario buscar(String email);
 
     List<Usuario> todos();
+    
+    Usuario login(String email, String senha);
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ifpb.dac.dood.dao;
 
 import ifpb.dac.dood.pojos.Evento;
@@ -14,30 +13,30 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- * 
+ *
  * @author Dijalma Silva <dijalmacz@gmail.com>
  */
 @Stateless
 public class EventoDao {
 
-     @PersistenceContext(unitName = "Dac_Dood")
+    @PersistenceContext(unitName = "Dac_Dood")
     private EntityManager em;
-    
-    public boolean salvar(Evento evento){
+
+    public boolean salvar(Evento evento) {
         em.persist(evento);
         return true;
     }
-    
-    public boolean remove(Evento event){
-        em.remove(event);
+
+    public boolean remove(Evento evento) {
+        em.remove(em.merge(evento));
         return true;
     }
-    
-    public Evento buscar(long id){
+
+    public Evento buscar(long id) {
         return em.find(Evento.class, id);
     }
-    
-    public List<Evento> todos(){
+
+    public List<Evento> todos() {
         TypedQuery<Evento> query = em.createQuery("SELECT C FROM Evento", Evento.class);
         return query.getResultList();
     }

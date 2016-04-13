@@ -29,7 +29,7 @@ public class DoodDao {
     }
     
     public boolean remove(Dood dood){
-        em.remove(dood);
+        em.remove(em.merge(dood));
         return true;
     }
     

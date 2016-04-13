@@ -149,6 +149,7 @@ public class Usuario implements Serializable {
         MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
         byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
         return new String(messageDigest);
+        
     }
 
     public void setSenha(String senha) {

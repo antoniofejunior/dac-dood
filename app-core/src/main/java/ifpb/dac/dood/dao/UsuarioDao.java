@@ -28,7 +28,7 @@ public class UsuarioDao {
     }
 
     public boolean remove(Usuario usuario) {
-        em.remove(usuario);
+        em.remove(em.merge(usuario));
         return true;
     }
 
@@ -39,5 +39,12 @@ public class UsuarioDao {
     public List<Usuario> todos() {
         TypedQuery<Usuario> query = em.createQuery("SELECT C FROM Usuario", Usuario.class);
         return query.getResultList();
+    }
+    
+    public Usuario login(String email, String senha){
+        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email like :email AND u.senha like :senha", Usuario.class);
+        query.setParameter("email", email);
+        query.setParameter("senha", senha);
+        return query.getSingleResult();
     }
 }

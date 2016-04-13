@@ -46,4 +46,9 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable{
         return dao.todos();
     }
 
+    @Override
+    public Usuario login(String email, String senha) {
+        return dao.login(email, senha);
+    }
+
 }

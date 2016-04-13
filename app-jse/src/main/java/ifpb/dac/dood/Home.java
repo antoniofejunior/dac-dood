@@ -109,11 +109,13 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         UsuarioService service = new ServiceLocator().lookup("java:global/DAC_Dood-core/UsuarioServiceImpl", UsuarioService.class);
 
-//        Usuario u = new Usuario("joe@gmail.com", Perfil.Administrador, "Joe", "Lins", "2011123010134", 
-//                "123123", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa);
-        Usuario find = service.buscar("dijalmacz@gmail.com");
-
-        JOptionPane.showMessageDialog(null, find.getNome());
+        Usuario u = new Usuario("dijalmacz@gmail.com", Perfil.Administrador, "Dijalma", "Silva", "201312010134", 
+                "123123", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa);
+//        Usuario usuario = service.buscar("dijalmacz@gmail.com");
+//        boolean removeu = service.remover(usuario);
+//        if (removeu)
+//            JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
+        service.salvar(u);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -29,7 +29,7 @@ public class RespostaDao {
     }
     
     public boolean remove(Resposta resposta){
-        em.remove(resposta);
+       em.remove(em.merge(resposta));
         return true;
     }
     
