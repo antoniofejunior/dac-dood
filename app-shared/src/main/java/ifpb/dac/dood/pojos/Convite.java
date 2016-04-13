@@ -7,14 +7,21 @@ package ifpb.dac.dood.pojos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 
 /**
  *
  * @author Junior
  */
+@Entity
 public class Convite implements Serializable {
 
+    @Id
     private String email;
+    @Enumerated(EnumType.STRING)
     private Perfil perfil;
     private LocalDate data;
 

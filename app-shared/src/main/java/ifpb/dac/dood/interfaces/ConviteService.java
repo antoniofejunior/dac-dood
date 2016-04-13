@@ -12,6 +12,12 @@ import ifpb.dac.dood.pojos.Convite;
  * @author Junior
  */
 public interface ConviteService {
-    public void enviar(Convite convite);
-    public Convite ler();
+    
+    void enviar(Convite convite);
+    
+    Convite ler();
+    
+    void aceitar(Convite convite);
+    
+    void recusar(Convite convite);
 }
