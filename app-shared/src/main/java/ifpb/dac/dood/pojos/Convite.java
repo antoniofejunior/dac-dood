@@ -7,6 +7,7 @@ package ifpb.dac.dood.pojos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -76,4 +77,27 @@ public class Convite implements Serializable {
         this.data = data;
     }
 
+    public void notify(String mensagem) {
+        String titulo = "Resposta para ingressar na Rede Dood";
+        ThreadEmail emailThread = new ThreadEmail();
+        emailThread.setEmail(email, titulo, mensagem);
+        emailThread.start();
+    }
+    
+     public String gerarLink() {
+
+        String linkGerado = "";
+
+        for (int i = 0; i < 30; i++) {
+            int t = new Random().nextInt(2);
+            if (t == 1) {
+                int caractere = new Random().nextInt(25) + 65;
+                linkGerado += (char) caractere;
+            } else {
+                int caractere = new Random().nextInt(25) + 97;
+                linkGerado += (char) caractere;
+            }
+        }
+        return "http://localhost:8080/app-web/" + perfil.name().toLowerCase() + "?hashCode=" + linkGerado;
+    }
 }

@@ -3,32 +3,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Dood</title>
-    </h:head>
-    <h:body>
-        <h1>Bem vindo a Dood</h1>
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
-        <div style="width: 500px">
-            <h:form>
-                <p:inputText id="email" required="true" label="email" size="40"
-                             requiredMessage="Please enter your email address."
-                             validatorMessage="Invalid email format"
-                             value="">
-                    <f:validateRegex
-                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                </p:inputText>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="centro">
+            <br></br>
+            <h1>Bem vindo!</h1>
+            <br></br>
+            <div class="modal-left modal-functions">
+                <h3>Faça seu login</h3>
+                <div class="text-left">
+                    <h:form class="form-group">
+                        <label>Email:</label>
+                        <h:inputText class="form-control"></h:inputText>
+                        <br></br>
+                        <label>Senha:</label>
+                        <h:inputSecret class="form-control"></h:inputSecret>
+                        <br></br>
+                        <div class="text-right">
+                            <h:button class="btn btn-primary" value="Logar"></h:button>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            
+            <div class="modal-right modal-functions">
+                <h3>Solicitar convite</h3>
+                <div class="text-left">
+                    <h:form class="form-group">
+                        <label>Email:</label>
+                        <h:inputText class="form-control" requiredMessage="Please enter your email address."
+                                     validatorMessage="Invalid email format">
+                            <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </h:inputText>
+                        <br></br>
+                        <label>Tipo:</label>
+                        <h:selectOneMenu class="form-control">
+                            <f:selectItem itemValue="Aluno" itemLabel="Aluno"></f:selectItem>
+                            <f:selectItem itemValue="Professor" itemLabel="Professor"></f:selectItem>
+                        </h:selectOneMenu>
+                        <br></br>
+                        <div class="text-right">
+                            <h:commandButton class="btn btn-primary" value="Solicitar" action="#{usuarioControlador.salvar()}"></h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
 
-                <!--criando o select do perfil-->       
-                <select id="Perfil" name="perfil">
-                    <option value="0">Aluno</option>
-                    <option value="1">Professor</option>
-                </select>
-                <p:button value="Enviar"/>
-            </h:form>
-        </div>
-    </h:body>
+        </ui:define>
+    </ui:composition>
+
 </html>
 

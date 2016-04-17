@@ -6,6 +6,7 @@
 package ifpb.dac.dood.interfaces;
 
 import ifpb.dac.dood.pojos.Convite;
+import java.util.List;
 
 /**
  *
@@ -13,11 +14,13 @@ import ifpb.dac.dood.pojos.Convite;
  */
 public interface ConviteService {
     
-    void enviar(Convite convite);
+    boolean enviar(Convite convite);
     
-    Convite ler();
+    Convite ler(String email);
     
-    void aceitar(Convite convite);
+    boolean aceitar(Convite convite);
     
-    void recusar(Convite convite);
+    boolean recusar(Convite convite);
+    
+    List<Convite> todos();
 }
