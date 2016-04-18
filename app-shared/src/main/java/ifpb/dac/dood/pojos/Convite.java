@@ -33,6 +33,7 @@ public class Convite implements Serializable {
     }
 
     public Convite() {
+        this.data = LocalDate.now();
     }
 
     /**

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ifpb.dac.dood.controladores;
 
 import ifpb.dac.dood.interfaces.ConviteService;
@@ -13,7 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * 
+ *
  * @author Dijalma Silva <dijalmacz@gmail.com>
  */
 @Named
@@ -22,28 +21,29 @@ public class ConviteController {
 
     @Inject
     private ConviteService service;
-    
+
     private Convite convite;
     private String email;
-    
+
     public ConviteController() {
         this.convite = new Convite();
         this.email = "";
     }
 
-    public void enviar(){
+    public void enviar() {
+        System.out.println("Convite enviado!");
         service.enviar(convite);
     }
-    
-    public void ler(){
+
+    public void ler() {
         this.convite = service.ler(email);
     }
-    
-    public void aceitar(){
+
+    public void aceitar() {
         service.aceitar(convite);
     }
-    
-    public void recusar(){
+
+    public void recusar() {
         service.recusar(convite);
     }
 
@@ -54,4 +54,13 @@ public class ConviteController {
     public String getEmail() {
         return email;
     }
+
+    public void setConvite(Convite convite) {
+        this.convite = convite;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

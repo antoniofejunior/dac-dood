@@ -9,7 +9,9 @@ package ifpb.dac.dood.controladores;
 import ifpb.dac.dood.interfaces.UsuarioService;
 import ifpb.dac.dood.pojos.Usuario;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,9 +27,13 @@ public class UserController {
     private UsuarioService service;
     
     private Usuario usuario;
+    private String email;
+    private String senha;
     
     public UserController(){
         this.usuario = new Usuario();
+        this.email = "";
+        this.senha = "";
     }
     
     public boolean salvar(){
@@ -46,7 +52,20 @@ public class UserController {
         return service.todos();
     }
     
-    public void login(String email, String senha){
+    @SessionScoped
+    public void login(){
         this.usuario = service.login(email, senha);
+    };
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 }
