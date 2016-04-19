@@ -41,10 +41,10 @@ public class UsuarioDao {
         return query.getResultList();
     }
     
-    public Usuario login(String email, String senha){
-        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email like :email AND u.senha like :senha", Usuario.class);
+    public boolean login(String email, String senha){
+//        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email like :email AND u.senha like :senha", Usuario.class);
+        TypedQuery<String> query = em.createQuery("SELECT u.senha FROM Usuario u WHERE UPPER(u.email) like UPPER(:email)", String.class);
         query.setParameter("email", email);
-        query.setParameter("senha", senha);
-        return query.getSingleResult();
+        return (senha == null ? query.getSingleResult() == null : senha.equals(query.getSingleResult()));
     }
 }

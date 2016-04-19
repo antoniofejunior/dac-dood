@@ -9,7 +9,6 @@ package ifpb.dac.dood.controladores;
 import ifpb.dac.dood.interfaces.UsuarioService;
 import ifpb.dac.dood.pojos.Usuario;
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -54,7 +53,9 @@ public class UserController {
     
     @SessionScoped
     public void login(){
-        this.usuario = service.login(email, senha);
+        if(service.login(email, senha)){
+            this.usuario = service.buscar(email);
+        }
     };
 
     public Usuario getUsuario() {
