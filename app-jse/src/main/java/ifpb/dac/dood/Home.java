@@ -113,9 +113,12 @@ public class Home extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         UsuarioService service = new ServiceLocator().lookup("java:global/DAC_Dood-core/UsuarioServiceImpl", UsuarioService.class);
-        if(service.login(jTextField1.getText(), Arrays.toString(jPasswordField1.getPassword()))){
+        if(service.login(jTextField1.getText(),jPasswordField1.getText())){
+            this.dispose();
+//            JOptionPane.showMessageDialog(null,jPasswordField1.getText(),"Falha na validação",JOptionPane.ERROR_MESSAGE);
             new Admin().setVisible(true);
-            this.setVisible(false);
+            
+//            this.setVisible(false);
         } else 
             JOptionPane.showMessageDialog(null,"Usuario ou senha incorretos!! tente novamente.","Falha na validação",JOptionPane.ERROR_MESSAGE);
         

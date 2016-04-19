@@ -12,8 +12,8 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,7 +29,6 @@ import javax.persistence.Transient;
  * @author Dijalma Silva <dijalmacz@gmail.com>
  */
 @Entity
-@Access(AccessType.FIELD)
 public class Usuario implements Serializable {
 
     @Transient
@@ -45,7 +44,6 @@ public class Usuario implements Serializable {
     private String sobrenome;
     @Column(length = 30)
     private String matricula;
-    @Transient
     private String senha;
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
@@ -64,6 +62,7 @@ public class Usuario implements Serializable {
     private List<Dood> doods;
 
     public Usuario() {
+        this("", Perfil.Aluno, "", "", "", "", Sexo.Feminino, "".getBytes(), LocalDate.now(), Status.Inativa);
     }
 
     public Usuario(String email, Perfil perfil, String nome, String sobrenome, String matricula, String senha, Sexo sexo, byte[] avatar, LocalDate dataNascimento, Status status) {
@@ -75,7 +74,7 @@ public class Usuario implements Serializable {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.matricula = matricula;
-        this.senha = senha;
+        this.senha = UtilCriptografia.criptografar(senha);
         this.sexo = sexo;
         this.avatar = avatar;
         this.dataNascimento = dataNascimento;
@@ -143,17 +142,12 @@ public class Usuario implements Serializable {
         this.matricula = matricula;
     }
 
-    @Access(AccessType.PROPERTY)
-    @Column(name = "senha")
     public String getSenha() throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-        byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
-        return new String(messageDigest);
-        
+        return senha;
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = UtilCriptografia.criptografar(senha);
     }
 
     public byte[] getAvatar() {

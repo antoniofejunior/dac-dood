@@ -20,27 +20,7 @@ public class TesteApp {
 
     public static void main(String[] args) {
         UsuarioService service = new ServiceLocator().lookup("java:global/DAC_Dood-core/UsuarioServiceImpl", UsuarioService.class);
-
-//        Usuario u = new Usuario("dijalmacz@gmail.com", Perfil.Administrador, "Dijalma", "Silva", "201312010134", 
-//                "123123", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa);
-//        Usuario usuario = service.buscar("dijalmacz@gmail.com");
-//        boolean removeu = service.remover(usuario);
-//        if (removeu)
-//            JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
-        service.salvar(new Usuario("Wellington@admin.com", Perfil.Administrador, "Welligton", "AdminSys", "0003", "admin", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa));
-
-    }
-    
-    public static void criarAdmin(){
-                UsuarioService service = new ServiceLocator().lookup("java:global/DAC_Dood-core/UsuarioServiceImpl", UsuarioService.class);
-
-//        Usuario u = new Usuario("dijalmacz@gmail.com", Perfil.Administrador, "Dijalma", "Silva", "201312010134", 
-//                "123123", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa);
-//        Usuario usuario = service.buscar("dijalmacz@gmail.com");
-//        boolean removeu = service.remover(usuario);
-//        if (removeu)
-//            JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
-        service.salvar(new Usuario("Wellington@admin.com", Perfil.Administrador, "Welligton", "AdminSys", "0003", "admin", Sexo.Masculino, new String("asd").getBytes(), LocalDate.now(), Status.Ativa));
+        service.salvar(new Usuario("admin", Perfil.Administrador, "Admin", "AdminSys", "1", "admin", Sexo.Masculino, "ADS".getBytes(), LocalDate.now(), Status.Ativa));
 
     }
 }
