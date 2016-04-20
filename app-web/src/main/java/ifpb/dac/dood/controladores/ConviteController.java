@@ -7,6 +7,7 @@ package ifpb.dac.dood.controladores;
 
 import ifpb.dac.dood.interfaces.ConviteService;
 import ifpb.dac.dood.pojos.Convite;
+import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +18,7 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class ConviteController {
+public class ConviteController implements Serializable{
 
     @Inject
     private ConviteService service;
@@ -32,6 +33,7 @@ public class ConviteController {
 
     public void enviar() {
         System.out.println("Convite enviado!");
+        System.out.println(convite);
         service.enviar(convite);
     }
 

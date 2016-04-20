@@ -84,8 +84,8 @@ public class Convite implements Serializable {
         emailThread.setEmail(email, titulo, mensagem);
         emailThread.start();
     }
-    
-     public String gerarLink() {
+
+    public String gerarLink() {
 
         String linkGerado = "";
 
@@ -101,4 +101,10 @@ public class Convite implements Serializable {
         }
         return "http://localhost:8080/app-web/" + perfil.name().toLowerCase() + "?hashCode=" + linkGerado;
     }
+
+    @Override
+    public String toString() {
+        return "Convite{" + "email=" + email + ", perfil=" + perfil + ", data=" + data + '}';
+    }
+
 }
