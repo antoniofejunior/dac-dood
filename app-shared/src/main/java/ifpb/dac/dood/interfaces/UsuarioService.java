@@ -22,5 +22,5 @@ public interface UsuarioService {
 
     List<Usuario> todos();
     
-    Usuario login(String email, String senha);
+    boolean login(String email, String senha);
 }

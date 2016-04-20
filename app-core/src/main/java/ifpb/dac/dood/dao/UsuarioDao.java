@@ -6,7 +6,13 @@
 package ifpb.dac.dood.dao;
 
 import ifpb.dac.dood.pojos.Usuario;
+import ifpb.dac.dood.pojos.UtilCriptografia;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,11 +46,12 @@ public class UsuarioDao {
         TypedQuery<Usuario> query = em.createQuery("SELECT C FROM Usuario", Usuario.class);
         return query.getResultList();
     }
-    
-    public Usuario login(String email, String senha){
-        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email like :email AND u.senha like :senha", Usuario.class);
-        query.setParameter("email", email);
-        query.setParameter("senha", senha);
-        return query.getSingleResult();
+
+    public boolean login(String email, String senha) {
+//              TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email like :email AND u.senha like :senha", Usuario.class);
+            TypedQuery<String> query = em.createQuery("SELECT u.senha FROM Usuario u WHERE UPPER(u.email) like UPPER(:email)", String.class);
+            query.setParameter("email", email);
+            return (UtilCriptografia.criptografar(senha).equals(query.getSingleResult()));
+     
     }
 }
