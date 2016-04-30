@@ -37,6 +37,11 @@ public class Admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jBsolicitacao.setText("solicitações");
+        jBsolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsolicitacaoActionPerformed(evt);
+            }
+        });
 
         jBUsuarios.setText("Usuários");
 
@@ -44,15 +49,15 @@ public class Admin extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jBsolicitacao, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-            .addComponent(jBUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jBUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+            .addComponent(jBsolicitacao, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(72, 72, 72)
                 .addComponent(jBsolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(60, 60, 60)
                 .addComponent(jBUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
@@ -79,7 +84,7 @@ public class Admin extends javax.swing.JFrame {
         jPBody.setLayout(jPBodyLayout);
         jPBodyLayout.setHorizontalGroup(
             jPBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
         );
         jPBodyLayout.setVerticalGroup(
             jPBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +117,10 @@ public class Admin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBsolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsolicitacaoActionPerformed
+      
+    }//GEN-LAST:event_jBsolicitacaoActionPerformed
 
     /**
      * @param args the command line arguments

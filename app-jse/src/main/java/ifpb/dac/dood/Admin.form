@@ -54,16 +54,16 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jBsolicitacao" pref="102" max="32767" attributes="0"/>
-              <Component id="jBUsuarios" alignment="0" max="32767" attributes="0"/>
+              <Component id="jBUsuarios" pref="122" max="32767" attributes="0"/>
+              <Component id="jBsolicitacao" pref="122" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   <Component id="jBsolicitacao" min="-2" pref="46" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="jBUsuarios" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
@@ -75,6 +75,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="solicita&#xe7;&#xf5;es"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBsolicitacaoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBUsuarios">
           <Properties>
@@ -117,7 +120,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="346" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="326" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
